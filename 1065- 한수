@@ -1,0 +1,36 @@
+#include <iostream>
+
+using namespace std;
+
+int method(int number)
+{
+	int DP[3] = { 0 };
+	int value = 99;
+	if (number <= 99)
+	{
+		value = number;
+	}
+	else if (99 < number)
+	{
+		for (int i = 100; i <= number; i++)
+		{
+			DP[0] = i / 100; //100의자리숫자
+			DP[1] = (i / 10) % 10;//10의자리숫자
+			DP[2] = i % 10;//1의자리숫자
+			if ((DP[0] - DP[1]) == (DP[1] - DP[2]))
+			{
+				value++;//값 증가 
+			}
+		}
+	}
+	return value;
+}
+
+int main()
+{
+	int han;//1000보다 작거나 같은 자연수 N
+	//0~99까지는 모두가 한수이다.
+	cin >> han;
+	cout << method(han);
+	return 0;
+}

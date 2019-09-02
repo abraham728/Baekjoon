@@ -1,0 +1,19 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	int N=0;//원하는 양수
+	int cntY=0;//약수의 갯수
+	int yak[50] = { 0 };//약수 배열
+	cin >> cntY;
+	for (int i = 0; i < cntY; i++)
+	{
+		cin >> yak[i];
+	}
+	sort(yak, yak + cntY);
+	N = yak[0] * yak[cntY - 1];
+	cout << N;
+	return 0;
+}

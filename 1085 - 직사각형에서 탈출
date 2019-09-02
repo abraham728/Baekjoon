@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int x, y, w, h = 0; 
+	
+	cin >> x >> y >> w >> h;
+	int xmin = x, ymin = y;
+
+	if (x > w - x)//x축에 대한 최소값
+	{
+		xmin = (w - x);
+	}
+	if (y > h - y)//y축에 대한 최소값
+	{
+		ymin = h - y;
+	}
+	if (xmin < ymin)//x축 y축중 작은 값
+	{
+		cout << xmin;
+	}
+	else cout << ymin;
+	return 0;
+}

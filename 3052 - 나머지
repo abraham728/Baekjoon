@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main()
+{
+	int bae[10];
+	for (int i = 0; i < 10; i++)
+	{
+		cin >> bae[i];
+		bae[i] = bae[i] % 42;
+	}
+	int cnt = 1;
+	sort(bae, bae + 10);
+	for (int j = 0; j < 9; j++)
+	{
+		if(bae[j]!=bae[j+1])
+		cnt++;
+	}
+	cout << cnt;
+}

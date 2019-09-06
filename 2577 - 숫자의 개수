@@ -1,0 +1,29 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
+int main()
+{
+	int bae[10] = { 0 };
+	int a, b, c = 0;
+	cin >> a >> b >> c;
+	int sum = a * b*c;
+	int sum2 = sum;
+	int count = 0;
+	while (sum2 > 0) // 숫자의 길이 알아내기 위함
+	{
+		sum2 = int(sum2 / 10);
+		count++;
+	}
+	for (int i = 0; i < count; i++) //각 자리 숫자를 하나씩 빼내어 확인하기
+	{
+		int index;
+		index = sum % 10;
+		bae[index]++;
+		sum = sum / 10;
+	}
+	for (int j = 0; j < 10; j++)
+	{
+		cout << bae[j] << endl;
+	}
+}

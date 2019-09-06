@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+int main()
+{
+	int Ori_bae[9] = { 0 };
+	int Sort_bae[9] = { 0 };
+	for (int i = 0; i < 9; i++)
+	{
+		cin >> Ori_bae[i];
+		Sort_bae[i] = Ori_bae[i];
+	}
+	sort(Sort_bae, Sort_bae + 9);
+	cout << Sort_bae[8] << endl;
+	for (int j = 0; j < 9; j++)
+	{
+		if (Ori_bae[j] == Sort_bae[8])
+			cout << j+1;
+	}
+}

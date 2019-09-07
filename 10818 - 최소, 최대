@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	int num;
+	int maxN = -1000000; // max함수를 사용하기 위해 최저값
+	int minN = 1000000; //min함수를 사용하기 위해 최대값
+	int temp;
+	cin >> num;
+	for (int i = 0; i < num; i++)
+	{
+		cin >> temp;
+		maxN = max(temp, maxN);
+		minN = min(temp, minN);
+	}
+	cout << minN << " " << maxN;
+	return 0;
+}

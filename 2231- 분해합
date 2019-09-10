@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <math.h>
+
+using namespace std;
+
+int main()
+{
+	int N = 0;//분해합의 수
+	vector<int> M; //생성자 집합
+	cin >> N;
+	for (int i = 1; i < N; i++)
+	{
+		int inum = i;
+		int temp = i;
+		int jari = 1;
+		int jari_num = 0;
+		while (inum >= jari)
+		{
+			jari *= 10;
+			jari_num++;
+		}
+		for (int j = 0; j < jari_num; j++)
+		{
+			temp += inum % 10;
+			inum = inum / 10;
+		}
+		if (temp == N)
+		{
+			M.push_back(i);
+		}
+	}
+	if (M.size() == 0)cout << 0;
+	else{
+	sort(M.begin(), M.end());
+	cout << *(M.begin());
+	}
+	return 0;
+}

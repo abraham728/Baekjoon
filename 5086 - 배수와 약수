@@ -1,0 +1,25 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+	int former = 0;
+	int latter = 1;
+	while (!(former == 0 && latter == 0))
+	{
+		cin >> former >> latter;
+		if (latter == former)exit;
+		else if (latter%former == 0) {
+			cout << "factor"; cout << '\n';
+		}
+		else if (former%latter == 0) {
+			cout << "multiple"; cout << '\n';
+		}
+		else {
+			cout << "neither"; cout << '\n';
+		}
+	}
+	return 0;
+}

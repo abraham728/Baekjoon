@@ -1,0 +1,44 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>	
+#include <math.h>
+using namespace std;
+
+int main()
+
+{
+	int num;
+	int maximum = 0; // 최댓값 변수
+	int value[501][501];//r값들을 저장할 배열
+	int arr[501][501];//처음 삼각형 받을 배열
+
+	cin >> num;
+
+	for (int i = 1; i <= num; i++)
+
+	{
+		for (int j = 1; j <= i; j++)
+			cin >> arr[i][j];
+	}
+
+
+
+	for (int i = 1; i <= num; i++)
+	{
+		for (int j = 1; j <= i; j++)
+			value[i][j] = arr[i][j] + max(value[i - 1][j], value[i - 1][j - 1]);
+	}
+
+
+	for (int i = 1; i <= num; i++)
+	{
+		maximum = max(maximum, value[num][i]);
+	}
+
+		
+
+	cout << maximum;
+
+	return 0;
+
+}

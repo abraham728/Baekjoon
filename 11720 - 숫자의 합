@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include<stdlib.h>
+
+using namespace std;
+
+int main()
+{
+	int num;
+	cin >> num;
+	string t;
+	cin >> t;
+	int sum = 0;
+	for (int i = 0; i < num; i++)
+	{
+		string tem;
+		tem= t[i];//선언과 대입을 따로 해줘야한다는 것을 까먹으면 안된다. 
+		sum += stoi(tem);
+	}
+	cout << sum;
+}

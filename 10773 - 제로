@@ -1,0 +1,32 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+int main()
+{
+	int num; //입력받을 명령어 갯수 변수
+	int command; // 명령어 변수
+	int val=0; // 최종값 변수
+	cin >> num;
+	stack<int> stack;
+	for (int i = 0; i < num; i++)
+	{
+		cin >> command;
+		if (command == 0)
+		{
+			stack.pop();
+		}
+		else
+		{
+			stack.push(command);
+		}
+	}
+
+	while (!stack.empty())//empty면 true를 반환한다
+	{
+		val += stack.top();
+		stack.pop();
+	}
+	cout << val << '\n';
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int cnt = 0;//연산횟수 변수 선언
+	int tem = 0;//임시숫자 선언
+	int tem_ten, tem_one, new_one, last_one;
+	int num = 0;
+	cin >> num;
+	tem = num;// 수 입력받기
+		tem_ten = tem / 10;
+		tem_one = tem % 10;
+		new_one = tem_ten + tem_one;
+		last_one = tem_one * 10 + (new_one) % 10;
+		tem = last_one;
+		cnt++;	
+	while (tem != num)
+	{
+		tem_ten = tem / 10;
+		tem_one = tem % 10;
+		new_one = tem_ten + tem_one;
+		last_one = tem_one * 10 + (new_one) % 10;
+		tem = last_one;
+		cnt++;
+	}
+	cout << cnt << '\n';
+	return 0;
+}

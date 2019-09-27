@@ -1,0 +1,60 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+class Prime_Number
+{
+public :
+	int number;
+	bool prime=true;//true가 소수, false가 소수가 아니다. 
+};
+bool detec(int n)
+{
+	if (n <= 1)return false;
+	for (int i = 2; i <= sqrt(n); i++) //keypoint 2 3 5 등은 true로 반환함
+	{
+		if(n%i==0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+
+int main()
+{
+	int sum = 0;//소수의 합
+	int min = 0;//가장 작은 소수
+	int M, N, width;
+	cin >> M >> N;
+	width = N-M + 1;
+	Prime_Number *arr = new Prime_Number[width];//배열 동적할당
+
+	for (int i = 0; i < width; i++)//배열에 숫자 대입
+	{
+		arr[i].number = M;
+		M++;
+	}
+
+	for (int j = 0; j < width; j++)
+	{
+		arr[j].prime = detec(arr[j].number);
+	}
+
+	for (int k = width-1; k >= 0; k--)
+	{
+		if (arr[k].prime)
+		{
+			min = arr[k].number;
+			sum += arr[k].number;
+		}
+	}
+	if(sum==0)
+	{
+		cout << -1 << '\n';
+	}
+	else {
+		cout << sum << '\n' << min<<'\n';
+	}
+	return 0;
+}

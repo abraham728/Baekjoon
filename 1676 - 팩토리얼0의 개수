@@ -1,0 +1,46 @@
+#include <iostream>
+#include <math.h>
+#include <algorithm>
+using namespace std;
+
+int two_detec(int n)
+{
+	int cnt = 0;
+	while (n%2==0)
+	{
+		cnt++;
+		n = n / 2;
+	}
+	return cnt;
+}
+
+
+int five_detec(int n)
+{
+	int cnt = 0;
+	while (n%5==0)
+	{
+		cnt++;
+		n = n / 5;
+	}
+	return cnt;
+}
+
+int main()
+{
+	int N;
+	int Limit;
+	int cnt = 0;//0의 갯수
+	cin >> N;
+	Limit = N;
+	int two = 0;
+	int five = 0;
+	for (int i = Limit; i > 1; i--)
+	{
+		two += two_detec(i);
+		five += five_detec(i);
+	}
+		cnt = min(two, five);
+	cout << cnt;
+	return 0;
+}

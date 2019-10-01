@@ -1,0 +1,45 @@
+#include <iostream>
+#include <math.h>
+#include <algorithm>
+#include <vector>
+#define Max_num 3
+
+using namespace std;
+
+int main()
+{
+	int N, M;
+	cin >> N; //카드의 갯수
+	cin >> M;
+	vector <int> Card;
+	int answer=0;
+	for (int i = 0; i < N; i++)
+	{
+		int tem;
+		cin >> tem;
+		Card.push_back(tem);
+	}
+
+	for (int a = 0; a < Card.size() - 2; a++)
+	{
+		for (int b = a+1; b < Card.size() - 1; b++)
+		{
+			for (int c = b+1; c < Card.size() ; c++)
+			{
+				int temp_2 = Card[a] + Card[b ] + Card[c ];
+
+				if (answer == 0 && temp_2 <= M)//초기 answer값 배정
+				{
+					answer = temp_2;
+				}
+				else if (answer != 0 && temp_2 <= M)
+				{
+					answer = max(answer, temp_2);
+				}
+			}
+		}
+	}
+
+	cout << answer;
+	
+}

@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+
+
+int N, M;
+int arr[10]; //sequence
+bool visited[10];//promising
+
+void func(int cnt)//cnt로 현재 몇개를 뽑았는지 count
+{
+	if (cnt == M)//cnt가 M개(수열의 길이를 만족하면)
+	{
+		for (int i = 0; i < M; i++) //수열의 길이만큼 출력
+			cout << arr[i] << " ";
+		cout << "\n";
+		return;
+	}
+
+	for (int i = 1; i <= N; i++) //1부터 N까지 탐색
+		if (!visited[i]) //해당 열을 방문한 경우 
+		{
+			visited[i] = true;//해당 열 유망하게 만들고
+			arr[cnt] = i;//수열에 해당 값을 삽입
+			func(cnt + 1);
+			visited[i] = false;//돌아오고나서 다시 FALSE로 바꿔준다. 
+		}
+}
+
+int main(void)
+{
+	cin >> N >> M;
+
+	func(0);
+	return 0;
+}

@@ -1,0 +1,30 @@
+#include <iostream>
+#include <deque>
+using namespace std;
+
+
+int main()
+{
+	deque <int> arr; //declare deque arr
+	int N;
+	cin >> N; 
+	int last;
+	if (N == 1) { cout << 1; return 0; }
+	else
+	{
+		for (int i = 1; i <= N; i++)
+		{
+			arr.push_back(i);
+		}
+		while (arr.size() > 1)
+		{
+			arr.pop_front();
+			int tmp = arr.front();
+			arr.pop_front();
+			arr.push_back(tmp);
+			last = arr.at(0);
+		}
+		cout << last << '\n';
+		return 0;
+	}
+}

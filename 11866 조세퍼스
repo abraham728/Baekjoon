@@ -1,0 +1,43 @@
+#include <iostream>
+#include <deque>
+#include <list>
+using namespace std;
+
+int main()
+{
+	list<int> jose;
+	int N, K;
+	cin >> N >> K;
+	for (int i = 1; i <= N; i++)
+	{
+		jose.push_back(i);
+	}
+	//find first delete node
+	list<int>::iterator iter = jose.begin();
+	for (int i = 0; i < K - 1; i++)
+	{
+		iter++;
+	}
+	cout << '<';
+	while (!jose.empty())
+	{
+		if(jose.size()!=1)cout << *iter << ", ";
+		else { cout << *iter << "> \n"; }
+		//erase() returns where deleted next
+		iter = jose.erase(iter);
+		if (jose.size() == 0)break;
+		if (iter == jose.end())//end() means not the last node, It means that last node's next
+		{
+			iter=jose.begin();
+		}
+		for (int j = 0; j < K - 1; j++)
+		{
+			iter++;
+			if (iter == jose.end())
+			{
+				iter = jose.begin();
+			}
+		}
+	}
+	return 0;
+}

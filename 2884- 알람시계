@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+void Calc(int* H, int* M)
+{
+	if (*M >= 45)
+	{
+		*M = *M - 45;
+		return;
+	}
+	else {
+		int tmp = 45 - *M;
+		*M = 60 - tmp;
+		if (*H != 0)
+		{
+		*H -= 1;
+		}
+		else { *H = 23; }
+		return;
+	}
+}
+
+int H, M;
+
+int main()
+{
+	cin >> H >> M;
+	Calc(&H, &M);
+	cout << H << " " << M << '\n';
+	return 0;
+}

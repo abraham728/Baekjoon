@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int N;
+	cin >> N;//number of input
+	double arr[1000];//array to save values
+	int max = 0;//maximum varaiable
+	double avg = 0; //average variable
+	for (int i = 0; i < N; i++)
+	{
+		int tmp=0;
+		cin >> tmp;
+		if (tmp > max)max = tmp;
+		arr[i] = tmp;
+	}
+	for (int i = 0; i < N; i++)
+	{
+		arr[i] = arr[i] / max * 100;
+		avg += arr[i];
+	}
+	avg /= N;
+	cout << avg;
+}

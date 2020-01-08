@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+int reverse(int n)
+{
+	int a, b, c, val;
+	a = n % 10;
+	n /= 10;
+	b = n % 10;
+	n /= 10;
+	c = n % 10;
+	val = a * 100 + b * 10 + c;
+	return val;
+}
+int main()
+{
+	int num, num2;
+	int re_num, re_num2;
+
+	cin >> num >> num2;
+
+	re_num = reverse(num);
+	re_num2 = reverse(num2);
+	
+	if (re_num > re_num2)cout << re_num;
+	else cout << re_num2;
+	return 0;
+}

@@ -1,0 +1,51 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후 on 2020/01/10.
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+using namespace std;
+
+//0 : fibonacci(n-1)
+//1 : fibonacci(n)
+//fibonacci : fibonacci(n-1) + fibonacci(n-2)
+
+int fibo[41];
+
+int fibonacci(int n)
+{
+    if(n<=0)
+    {
+       fibo[0]=0;
+        return 0;
+    }
+    else if(n==1)
+    {
+        fibo[1]=1;
+        return 1;
+    }
+    if(fibo[n] !=0) return fibo[n];
+    else{
+        return fibo[n]=fibonacci(n-1) +fibonacci(n-2);
+    }
+}
+
+int main() {
+    int testCase;
+    cin>>testCase;
+    int n;
+    for(; 0<testCase; testCase--)
+    {
+        cin>>n;
+        if(n==0)cout<<1<< " "<<0<<'\n';
+        else if(n==1)cout<<0<<" "<<1<<'\n';
+        else{
+        fibonacci(n);
+        cout<<fibo[n-1]<<" "<<fibo[n]<<'\n';
+        }
+    }
+    return 0;
+}

@@ -1,0 +1,26 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    int Kook, Sae=0;
+    int j,s,k,y;
+    cin>>j>>s>>k>>y;
+    Kook=j+k+s+y;
+    cin>>j>>s>>k>>y;
+    Sae=j+k+s+y;
+    
+    if(Kook>=Sae)cout<<Kook<<'\n';
+    else cout<<Sae<<'\n';
+    return 0;
+}
+

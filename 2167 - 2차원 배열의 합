@@ -1,0 +1,47 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int arr[302][302];
+    int M, N;
+    cin>>M>>N;
+    
+    for(int i=1; i<=M; i++)
+    {
+        for(int j=1; j<=N; j++)
+        {
+            cin>>arr[i][j];
+        }
+    }
+    
+    cin>>M;
+    int i,j,x,y;
+    int sum=0;
+    for(int num=0; num<M; num++)
+    {
+    cin>>i>>j>>x>>y;
+        for(int row=i; row<=x; row++)
+        {
+            for(int col=j; col<=y; col++)
+            {
+                sum+=arr[row][col];
+            }
+        }
+        cout<<sum<<'\n';
+        sum=0;
+    }
+    
+    
+    return 0;
+}
+

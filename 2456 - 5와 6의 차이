@@ -1,0 +1,63 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+long FiveToSix(long num)
+{
+    long tem = num;
+    int ten=1;
+    while(tem>0)
+    {
+        int namu=tem%10;
+        if(namu==5)
+        {
+            num-=(namu*ten);
+            num+=(6*ten);
+        }
+        tem/=10;
+        ten*=10;
+    }
+    return num;
+}
+
+long SixtoFive(long num)
+{
+    long tem = num;
+      int ten=1;
+      while(tem>0)
+      {
+          int namu=tem%10;
+          if(namu==6)
+          {
+              num-=(namu*ten);
+              num+=(5*ten);
+          }
+          tem/=10;
+          ten*=10;
+
+      }
+    return num;
+}
+
+int main()
+{
+    long M ,N;
+    
+    cin >> M >>N;
+    
+    long Max, Min;
+    Max=FiveToSix(M)+FiveToSix(N);
+    Min=SixtoFive(M)+SixtoFive(N);
+    cout<<Min<<" "<<Max<<'\n';
+    
+    return 0;
+}
+

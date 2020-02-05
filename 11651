@@ -1,0 +1,42 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+#include <iostream>
+#include <vector>
+#include <utility>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    cin>>N;
+    
+    pair <int , int > v;
+    vector <pair<int , int >> vp;
+    
+    int x,y;
+    for(int i=0; i<N; i++)
+    {
+        cin>>x;
+        cin>>y;
+        v=make_pair(y, x);
+        vp.push_back(v);
+    }
+
+    sort(vp.begin(), vp.end());
+    
+    for(int i=0; i<N; i++)
+    {
+        cout<<vp[i].second <<" "<<vp[i].first<<'\n';
+    }
+}

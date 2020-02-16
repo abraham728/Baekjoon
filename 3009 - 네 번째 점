@@ -1,0 +1,40 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+#include <iostream>
+#include <vector>
+#include <utility>
+#include <algorithm>
+
+using namespace std;
+
+int find(int arr[])
+{
+    if(arr[0]==arr[1])return arr[2];
+    else if(arr[0]==arr[2])return arr[1];
+    else if(arr[1]==arr[2])return arr[0];
+    
+    return -1;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int X[3], Y[3];
+    for(int i=0; i<3; ++i)
+    {
+        cin>>X[i];
+        cin>>Y[i];
+    }
+    
+    cout<<find(X)<<" "<<find(Y)<<'\n';
+    
+    return 0;
+}

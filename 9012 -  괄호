@@ -1,0 +1,59 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+#include <iostream>
+#include <string>
+#include <stack>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    cin >> N;
+    
+    cin.clear();
+    cin.ignore(256, '\n');
+    
+    string S;
+    for(int i=0; i<N; ++i)
+    {
+        getline(cin, S);
+        S+='\n';
+        int x=0;
+        
+        stack<char> st;
+        while(S[x]!='\n')
+        {
+            if(S[x]=='(')
+            {
+                
+                st.push(S[x]);
+            }
+            else
+            {
+                if(st.empty())
+                {
+                    st.push(')');
+                    break;
+                }
+                else
+                    st.pop();
+            }
+            ++x;
+        }
+        if(st.empty())cout<<"YES"<<'\n';
+        else cout<<"NO"<<'\n';
+        
+        S.clear();
+    }
+    return 0;
+}

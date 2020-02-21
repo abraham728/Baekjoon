@@ -1,0 +1,78 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+#include <iostream>
+#include <string>
+#include <stack>
+#include <vector>
+
+using namespace std;
+
+vector<string> answer;//array for +-
+stack<int> st; // stack
+
+int PushPop(vector<int> arr)
+{
+    int arrIndex = 0;
+    int pushNumber = 1;
+    while (arrIndex <= arr.size() - 1)
+    {
+        if (st.empty())
+        {
+            st.push(pushNumber++);
+            answer.push_back("+");
+        }
+        else
+        {
+            if (st.top() == arr[arrIndex]) // 해당하는 값이 맨위에 있는 경우
+            {
+                st.pop();
+                answer.push_back("-");
+                arrIndex++;
+            }
+            else if (st.top() < arr[arrIndex])
+            {
+                st.push(pushNumber++);
+                answer.push_back("+");
+            }
+            else // top > arr[arrIndex]
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    cin >> N;
+    vector<int> arr; //수열
+    
+    for (int i = 0; i < N; ++i)
+    {
+        int tmp;
+        cin >> tmp;
+        arr.push_back(tmp);
+    }
+    
+    if (PushPop(arr))
+    {
+        for (auto it = answer.begin(); it != answer.end(); it++)
+        {
+            cout << *it << '\n';
+        }
+    }
+    else cout << "NO" << '\n';
+    
+    return 0;
+}

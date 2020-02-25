@@ -1,0 +1,106 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+stack<char> leftStack, rightStack;
+
+
+void Lcursor()
+{
+    if(leftStack.empty())return;
+    else{
+        rightStack.push(leftStack.top());
+        leftStack.pop();
+    }
+}
+
+void Dcursor()
+{
+    if(rightStack.empty())return;
+    else{
+        leftStack.push(rightStack.top());
+        rightStack.pop();
+    }
+}
+
+void Delete()
+{
+    if(leftStack.empty())return;
+    else{
+        leftStack.pop();
+    }
+}
+
+void Add()
+{
+    char addChar;
+    cin >> addChar;
+    leftStack.push(addChar);
+}
+
+void Print()
+{
+    vector<char> leftStackVector;
+    while(!leftStack.empty())
+    {
+        leftStackVector.push_back(leftStack.top());
+        leftStack.pop();
+    }
+    for(int i=leftStackVector.size()-1; i>=0; --i)
+    {
+        cout<<leftStackVector[i];
+    }
+    
+    while(!rightStack.empty())
+    {
+        cout<<rightStack.top();
+        rightStack.pop();
+    }
+    cout<<'\n';
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    string first;
+    cin>>first;
+    
+    int N;
+    cin>> N;
+    
+    for(int i=0; i<first.length(); ++i)//pushing elements into leftStack
+    {
+        char c= first[i];
+        leftStack.push(c);
+    }
+    
+    for(int j=0; j<N; ++j)
+    {
+        char c;
+        cin>> c;
+        if(c=='L')Lcursor();
+        else if(c=='D')Dcursor();
+        else if(c=='B')Delete();
+        else
+        {
+            Add();
+        }
+    }
+    
+    Print(); //print all elements of stacks
+    return 0;
+}
+

@@ -1,0 +1,72 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stack>
+#include <string>
+
+using namespace std;
+
+void WordReverse(string str)
+{
+    int x=0;
+    stack<char> st;
+    int size = str.size()-1;
+    while(x<=size)
+    {
+        if(str[x]=='<')
+        {
+            while (!st.empty())
+            {
+                cout << st.top();
+                st.pop();
+            }
+            cout<<str[x];
+            x++;
+            while(str[x]!='>')
+            {
+                cout<<str[x];
+                x++;
+            }
+            cout<<str[x];
+        }
+        else if (str[x] != ' ')
+            st.push(str[x]);
+        else
+        {
+            while (!st.empty())
+            {
+                cout << st.top();
+                st.pop();
+            }
+            cout << ' ';
+        }
+        ++x;
+    }
+    while (!st.empty())
+    {
+        cout << st.top();
+        st.pop();
+    }
+    cout << '\n';
+    
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    string str;
+    getline(cin, str);
+    WordReverse(str);
+    
+    return 0;
+}
+

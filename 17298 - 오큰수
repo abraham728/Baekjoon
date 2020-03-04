@@ -1,0 +1,48 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    cin>>N;
+    int tmp;
+    vector<int> arr;
+    vector<int> NGE(N, -1);
+    for(int i=0; i<N; ++i)
+    {
+        cin>>tmp;
+        arr.push_back(tmp);
+    }
+    
+    stack<int> st;
+    
+    
+    for(int i=0;i<N; ++i)
+    {
+        while(!st.empty() && arr[i]>arr[st.top()] )
+        {
+            NGE[st.top()]=arr[i];
+            st.pop();
+        }
+        st.push(i);
+    }
+    for(int i=0; i<N; ++i) cout<<NGE[i]<<" ";
+    
+    return 0;
+}
+

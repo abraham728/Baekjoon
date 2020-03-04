@@ -1,0 +1,40 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int Burger[3];
+    int Drink[2];
+    int MinB=2001;
+    int MinD=2001;
+    for(int i=0;i<3; ++i)
+    {
+        cin>>Burger[i];
+        if(Burger[i]<MinB)MinB=Burger[i];
+    }
+    for(int j=0; j<2; ++j)
+    {
+        cin>>Drink[j];
+        if(Drink[j]<MinD)MinD=Drink[j];
+    }
+    cout<<MinD+MinB-50<<'\n';
+    return 0;
+}
+

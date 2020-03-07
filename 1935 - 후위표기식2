@@ -1,0 +1,76 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    cin >> N;
+    
+    string s;
+    cin>>s;
+    
+    vector<double> var(N);
+    for(int i=0; i<N; ++i)
+    {
+        cin>>var[i];
+    }
+    
+    int size=s.size();
+    
+    stack<double> st;
+    
+    for(int i=0; i<size; ++i)
+    {
+        if(s[i]=='+')
+        {
+            double tmp=st.top();
+            st.pop();
+            st.top()+=tmp;
+        }
+        else if(s[i] =='-')
+        {
+            double tmp=st.top();
+            st.pop();
+            st.top()-=tmp;
+        }
+        else if(s[i] =='*')
+        {
+            double tmp=st.top();
+            st.pop();
+            st.top()*=tmp;
+        }
+        else if(s[i] =='/')
+        {
+            double tmp=st.top();
+            st.pop();
+            st.top()/=tmp;
+        }
+        else//case char is number
+        {
+            st.push(var[s[i]-'A']);
+        }
+    }
+    
+    double answer=st.top();
+    printf("%.2f\n", answer);
+    
+    return 0;
+}
+

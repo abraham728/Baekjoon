@@ -1,0 +1,40 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    string s;
+    cin >> s;
+    
+    int alphabet[26]={0};
+    
+    for(int i=0; i<s.length(); ++i)
+    {
+        alphabet[s[i]-97]++;
+    }
+    
+    for(int i=0; i<26; ++i)
+    {
+        cout<<alphabet[i]<<" ";
+    }
+    cout<<'\n';
+    return 0;
+}
+

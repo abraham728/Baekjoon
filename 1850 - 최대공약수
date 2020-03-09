@@ -1,0 +1,46 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int gcd(long long a, long long b)
+{
+    long long c;
+    while (b != 0)
+    {
+        c = a % b;
+        a = b;
+        b = c;
+    }
+    return a;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    long long A,B;
+    cin>>A>>B;
+    
+    int limit=gcd(A,B);
+    
+    for(int i=0; i<limit; ++i)
+    {
+        cout<<1;
+    }
+    cout<<'\n';
+    return 0;
+}
+

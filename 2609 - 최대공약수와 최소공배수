@@ -1,0 +1,46 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int GCD (int A, int B)
+{
+    while(B!=0)
+    {
+        int tmp=B;
+        B=A%B;
+        A=tmp;
+    }
+    return A;
+}
+
+int LCD(int A, int B)
+{
+    int gcd=GCD(A, B);
+    return gcd*(A/gcd)*(B/gcd);
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    int A, B;
+    cin>> A>>B;
+    
+    cout<<GCD(A,B)<<'\n';
+    cout <<LCD(A,B)<<'\n';
+    
+    return 0;
+}
+

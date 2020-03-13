@@ -1,0 +1,53 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    int A, B;
+    cin>> A>>B;
+    
+    vector<int> prime(B-A);
+    int pn=0;
+    vector<bool> check(B);
+    int limit=B;
+    
+    for(long i=2; i<=limit; ++i)
+    {
+        if(check[i] == false)
+        {
+            if(i>=A)
+            {
+                prime[pn++]=i;
+            }
+            for(long long j=i*i; j<=limit; j+=i)
+            {
+                check[j]=true;
+            }
+        }
+    }
+    int index=0;
+    while(prime[index]!=0)
+    {
+        cout<<prime[index++]<<'\n';
+    }
+    
+    return 0;
+}
+

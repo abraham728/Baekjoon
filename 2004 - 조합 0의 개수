@@ -1,0 +1,58 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <utility>
+
+using namespace std;
+
+long CountFive(long number)
+{
+    long cnt=0;
+    for( long i=5; i<=number; i*=5)
+    {
+        cnt+=number/i;
+    }
+    return cnt;
+}
+
+long CountTwo( long number)
+{
+    long cnt=0;
+    for( long i=2; i <=number; i*=2)
+    {
+        cnt+=number/i;
+    }
+    return cnt;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    long long N, M;
+    cin >> N >> M;
+    
+    long five = CountFive(N);
+    five-=CountFive(M);
+    five-=CountFive(N-M);
+    
+    long two = CountTwo(N);
+    two-=CountTwo(M);
+    two-=CountTwo(N-M);
+    
+    cout<<min(five, two)<<'\n';
+    
+    return 0;
+}
+

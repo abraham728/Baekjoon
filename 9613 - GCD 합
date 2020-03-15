@@ -1,0 +1,71 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+vector<int> possiblePair;
+
+int GCD (int A, int B) //function that find GCD
+{
+    while(B!=0)
+    {
+        int tmp=B;
+        B=A%B;
+        A=tmp;
+    }
+    return A;
+}
+
+long findPossible() //fuction that find sum of all GCDs
+{
+    long answer=0;
+    int limit=possiblePair.size();
+    
+    for(int i=0; i< limit; ++i)
+    {
+        for(int j=i+1; j<limit; ++j)
+        {
+            answer+= GCD(possiblePair[i], possiblePair[j]);
+        }
+    }
+    return answer;
+}
+
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    cin >> N; // Input Number
+    while(N>0)
+    {
+        int testcase; // Count of testcase number
+        cin >>testcase;
+        int tmp;
+        for(int i=0; i<testcase; ++i)
+        {
+            cin >>tmp;
+            possiblePair.push_back(tmp);
+        }
+        cout <<findPossible()<<'\n';
+        possiblePair.resize(0);
+        N--;
+    }
+    
+    return 0;
+}
+

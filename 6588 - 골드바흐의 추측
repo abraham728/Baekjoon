@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <utility>
+
+using namespace std;
+
+vector<int> prime;
+bool check[1000001];
+int answer[2]={-1};
+
+void find(int A)
+{
+    
+    
+    int IndexLimit=0;
+    while(prime[IndexLimit]<=A)
+    {
+        ++IndexLimit;
+    }
+    
+    for(int i=0; i<=IndexLimit; ++i)
+    {
+        for(int j=0; j<=IndexLimit; ++j)
+        {
+            if(prime[i] + prime[j] == A)
+            {
+                answer[0]=i;
+                answer[1]=j;
+                return;
+            }
+            else if(prime[i] +prime[j] >A)
+            {
+                break;
+            }
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    for(long i=2; i<=1000000; ++i) //eratosthenes
+    {
+        if(check[i] == false)
+        {
+            prime.push_back(i);
+            for(long long j=i*i; j<=1000000; j+=i)
+            {
+                check[j]=true;
+            }
+        }
+    }
+    
+    int B;
+    while(1)
+    {
+        cin>>B;
+        if(B==0)break;
+        else{
+            find(B);
+            if(answer[0] == -1)cout <<"Goldbach's conjecture is wrong."<<'\n';
+            else{
+                cout << B <<" = "<<prime[answer[0]]<<" + "<<prime[answer[1]]<<'\n';
+                answer[0]=-1;answer[1]=-1;
+            }
+            
+        }
+    }
+    return 0;
+}

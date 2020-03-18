@@ -1,0 +1,57 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
+using namespace std;
+
+long GCD (long A, long B)
+{
+    while(B!=0)
+    {
+        long tmp=B;
+        B=A%B;
+        A=tmp;
+    }
+    return A;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    long N, S;
+    cin >> N >> S;
+    
+    vector<long> arr(N);
+ 
+    for(long i=0; i< N; i++)
+    {
+        cin>>arr[i];
+        long tmp = S-arr[i];
+        if( tmp > 0)
+        {
+            arr[i] = tmp;
+        }
+        else{
+            arr[i] = -tmp;
+        }
+    }
+    
+    for(long i=0; i< N-1; i++)
+    {
+        arr[i+1]= GCD(arr[i], arr[i+1]);
+    }
+    
+    cout << *(arr.end()-1)<<'\n';
+    return 0;
+}

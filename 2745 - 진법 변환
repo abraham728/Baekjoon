@@ -1,0 +1,49 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    string N;
+    int B;
+    cin >> N >> B;
+    
+    int length = N.length()-1;
+    
+    int answer=0;
+    for(int i = 0; i<=length; i++)
+    {
+        if(N[i]>=48 && N[i] <= 57) // number
+        {
+            int tmp = N[i] - 48;
+            answer+= (pow(B, length-i) *tmp);
+        }
+        
+        else if(N[i]>=65 && N[i] <= 90)
+        {
+            int tmp = N[i] - 55;
+            answer+= (pow(B, length-i) *tmp);
+            
+        }
+    }
+    
+    cout << answer <<'\n';
+    
+    return 0;
+}
+

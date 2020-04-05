@@ -1,0 +1,53 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <stack>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int A, B;
+    cin >> A >>B; // future, jung
+    
+    int n; // 자리수의 개수
+    cin >> n;
+    
+    int tmp;
+    int answer=0;
+    for(int i=1; i<=n; ++i)
+    {
+        cin>>tmp;
+        answer += (pow(A, n-i) * tmp);
+    }
+    
+    stack<int> st;
+    
+    while(answer!=0)
+    {
+        st.push(answer%B);
+               answer /=B;
+    }
+    while(!st.empty())
+    {
+        cout << st.top()<<" ";
+        st.pop();
+    }
+    cout<<'\n';
+   
+    
+    return 0;
+}
+

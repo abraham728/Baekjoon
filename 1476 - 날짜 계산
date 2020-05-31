@@ -1,0 +1,59 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <string>
+
+using namespace std;
+
+
+
+int main()
+{
+    
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+  
+    int E,S,M;
+    cin >> E >> S >> M;
+    
+    int year = 1;
+    int goingE=1, goingS=1, goingM =1;
+   
+    while(E != goingE || S != goingS || M != goingM) // 세개가 다 원하는 값이 아닐 때....
+    {
+        if(goingE !=15)
+        {
+        goingE++;
+        }
+        else{
+            goingE=1;
+        }
+        
+        if(goingS != 28)
+        {
+        goingS++;
+        }
+        else{
+            goingS=1;
+        }
+        if(goingM != 19)
+        {
+        goingM++;
+        }
+        else{
+            goingM =1;
+        }
+        year++;
+    }
+    
+    cout <<year <<'\n';
+    
+}

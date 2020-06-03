@@ -1,0 +1,83 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <string>
+
+int arr[10];
+
+using namespace std;
+
+bool alphabet[27];
+
+void reset()
+{
+    for(int i=0; i<27; i++)
+    {
+        alphabet[i]=false;
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    cin >> N;
+    
+    string arr[101];
+    string str;
+    
+    for(int i=0; i< N; i++)
+    {
+        cin >> str;
+        arr[i] =  str;
+    }
+    
+    int cnt =0;
+    bool okay;
+    for(int i=0; i<N; i++)
+    {
+        string tmp = arr[i];
+        int len = tmp.length();
+        
+        for(int j=0; j<len; j++)
+        {
+            if(!alphabet[tmp[j]-97]) // 한번도 나오지 않은 경우
+            {
+                alphabet[tmp[j]-97]=true; // 나온것 확인
+            }
+            else //나왔던 알파벳인 경우
+            {
+                if(tmp[j] ==tmp[j-1] )//이전것이 연속인 경우
+                {
+                    continue;
+                }
+                else//이전것과 다른 경우
+                {
+                    okay = true; // 집합의 단어가 아님
+                    break;
+                }
+            }
+        }
+        if(okay != true) //적합한 단어라면
+        {
+            cnt++;
+            okay =false;
+        }
+        reset();
+        okay = false;
+    }
+    
+    cout << cnt <<'\n';
+    
+    return 0;
+}

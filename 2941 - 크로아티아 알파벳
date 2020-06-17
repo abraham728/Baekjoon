@@ -1,0 +1,46 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+
+using namespace std;
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+  
+    string arr[8]={"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+    
+    string word;
+    cin >> word;
+    int wordsize = word.size();
+    int croa=0;
+    int croaCnt=0;
+    for(int i=0; i<8; i++)
+    {
+        while(word.find(arr[i]) != string::npos)
+        {
+            croa +=arr[i].size();
+            croaCnt++;
+            word.replace(word.find(arr[i]), arr[i].size(), "*");
+        }
+    }
+    int Alpha = wordsize - croa;
+    
+    cout << Alpha+croaCnt<<'\n';
+    
+    
+    return 0;
+}

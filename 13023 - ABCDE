@@ -1,0 +1,83 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+
+using namespace std;
+
+#define MAX 2001
+
+bool arr[MAX][MAX]; //인접행렬
+vector<int> list[MAX]; //인접리스트
+vector<pair<int,int>>edges; //간선리스트
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+  
+    int N, M;
+    cin >> N >> M;
+    
+    for(int i=0; i<M; i++)
+    {
+        int from,to;
+        cin >> from >> to;
+        edges.push_back({from, to});
+        edges.push_back({to, from});
+        arr[from][to] = arr[to][from] = true;
+        list[from].push_back(to);
+        list[to].push_back(from);
+    }
+    
+    M*=2; //간선리스트 때문에 *2를 해주어야 한다. (인접리스트는 N에 해당)
+    
+    for(int i=0; i<M; i++)
+    {
+        for(int j=0; j<M; j++)
+        {
+            //A->B ,이미 간선으로 표현 가능
+            int A=edges[i].first;
+            int B=edges[i].second;
+    
+            //c->D
+            int C = edges[j].first;
+            int D = edges[j].second;
+            
+            if(A == B || A == C || A == D || B == C || B == D || C == D)
+            {
+                continue;
+            }
+            
+            //B->C
+            if(arr[B][C] == false) //case : B and C are not friends
+            {
+                continue;
+            }
+            
+            //D -> E
+            for(int E : list[D])
+            {
+                if(A == E || B == E || C == E || D == E)
+                {
+                    continue;
+                }
+                cout << 1<<'\n';
+                return 0;
+            }
+    
+        }
+    }
+    cout << 0 <<'\n';
+    return 0;
+}

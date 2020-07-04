@@ -1,0 +1,34 @@
+#include <iostream>
+#include <algorithm>
+
+
+
+using namespace std;
+
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int yen[6]={500,100,50,10,5,1};
+    int pay;
+    cin >> pay;
+    pay = 1000-pay;
+    
+    int cnt=0;
+    
+    for(int i=0; i<6; i++)
+    {
+        int tmp = pay / yen[i];
+        if(tmp > 0)
+        {
+            pay %= yen[i];
+            cnt += tmp;
+        }
+    }
+    cout <<cnt <<'\n';
+    return 0;
+}

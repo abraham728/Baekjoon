@@ -1,0 +1,48 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <queue>
+
+using namespace std;
+
+int arr[10001]={0};
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    int tmp = 0;
+    cin >> N;
+    
+    int max =0;
+    for(int i=0; i<N; i++)
+    {
+        int tmp;
+        cin >> tmp;
+        arr[tmp]++; //index 숫자의 갯수 추가
+        if(tmp > max) max= tmp;
+    }
+    
+    for(int i=0; i<=max; i++)
+    {
+        for(int j=0; j<arr[i]; j++)
+        {
+            cout<<i<<'\n';
+        }
+    }
+  
+    return 0;
+}
+

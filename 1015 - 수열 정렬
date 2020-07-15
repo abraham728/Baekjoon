@@ -1,0 +1,54 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <queue>
+#include <cmath>
+#include <set>
+#include <unordered_map>
+#include <cstring>
+
+using namespace std;
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+   
+    vector<pair<int, int>> arr;
+    int ans[1001];
+    
+    int N;
+    cin >>N;
+    for(int i=0; i<N; i++)
+    {
+        int tmp;
+        cin >> tmp;
+        pair<int, int> tmpPair = make_pair(tmp, i);
+        arr.push_back(tmpPair);
+    }
+    
+    sort(arr.begin(), arr.end());
+    
+    for(int i=0; i<N; i++)
+    {
+        ans[arr[i].second]=i;
+    }
+    
+    for(int i=0; i<N; i++)
+    {
+       cout<< ans[i]<<" ";
+    }
+    return 0;
+}
+

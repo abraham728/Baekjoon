@@ -1,0 +1,64 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stdio.h>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+
+using namespace std;
+
+bool cmp(const pair<int, int> &a, const pair<int, int> &b)
+{
+   if (a.second == b.second) {
+        return a.first < b.first;
+    }
+    else {
+        return a.second < b.second;
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+   
+    int N;
+    cin >> N;
+    vector<pair<int, int>> Num_Age;
+    vector<pair<int, string>> Num_Name;
+    
+    int seq=0;
+    
+    for(int i=0; i<N; i++)
+    {
+        int age;
+        cin >> age;
+        string name;
+        cin >> name;
+        
+        pair<int, int> tmp = make_pair(seq, age);
+        pair<int, string> tmp2 = make_pair(seq++, name);
+        Num_Age.push_back(tmp);
+        Num_Name.push_back(tmp2);
+    }
+    
+    sort(Num_Age.begin(), Num_Age.end(),cmp);
+    
+    for(int i=0; i<Num_Age.size(); i++)
+    {
+        cout << Num_Age[i].second << " "<<Num_Name[Num_Age[i].first].second<<'\n';
+    }
+    
+    
+    return 0;
+}
+

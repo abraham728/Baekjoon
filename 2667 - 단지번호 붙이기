@@ -1,0 +1,87 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <stdio.h>
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <queue>
+#include <cmath>
+#include <set>
+#include <unordered_map>
+#include <cstring>
+
+using namespace std;
+
+int N;
+int Map[26][26]={0};
+bool Visited[26][26]={false};
+vector<int> NoHome;
+int cnt;
+
+int dx[4]={-1,1,0,0};
+int dy[4]={0,0,1,-1};
+
+void dfs(int x, int y)
+{
+    cnt++;
+    Visited[x][y] = true;
+    for(int i=0; i<4; i++)
+    {
+        int goingX = x +dx[i];
+        int goingY = y +dy[i];
+        
+        if(goingX < 0 || goingX >= N || goingY <0 || goingY >=N)continue;
+        if(Map[goingX][goingY] != 0 && Visited[goingX][goingY] == false)//탐색 가능
+        {
+            dfs(goingX, goingY);
+        }
+    }
+}
+
+int main()
+{
+   // ios_base::sync_with_stdio(false);
+    //cin.tie(nullptr);
+    //cout.tie(nullptr);
+   
+    scanf("%d", &N);
+    for(int i=0; i<N; i++)
+    {
+        for(int j=0; j<N; j++)
+        {
+            scanf("%1d", &Map[i][j]);
+        }
+    }
+    
+    for(int i=0; i<N; i++)
+    {
+        for(int j=0; j<N; j++)
+        {
+            if(Map[i][j] == 1 && Visited[i][j] == false)//집이 있고 가보지 않은 집인 경우
+            {
+                cnt =0;
+                dfs(i,j);
+                NoHome.push_back(cnt);//집 갯수 추가하기
+            }
+        }
+    }
+    
+    sort(NoHome.begin(), NoHome.end());
+    int limit = NoHome.size();
+    cout << limit<<'\n';
+    
+    for(int i=0; i<limit; i++)
+    {
+        cout<<NoHome[i]<<'\n';
+    }
+    
+    return 0;
+}
+

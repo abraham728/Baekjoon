@@ -1,0 +1,49 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N;
+    cin >> N;
+    int cnt=1;
+    
+   while(cnt <= N)
+   {
+       for(int i=0; i<cnt; i++)
+       {
+           cout <<'*';
+       }
+       cout <<'\n';
+       cnt++;
+   }
+    
+    cnt = N-1;
+    while(cnt >= 1)
+    {
+        for(int i=0; i<cnt; i++)
+        {
+            cout<<'*';
+        }
+        cout<<'\n';
+        cnt--;
+    }
+    
+    return 0;
+}
+

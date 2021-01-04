@@ -1,0 +1,74 @@
+//
+//  main.cpp
+//  Baekjoon
+//
+//  Created by 이준후
+//  Copyright © 2020 이준후. All rights reserved.
+//
+
+#include <iostream>
+#include <algorithm>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+
+void Print(int deno, int nume)
+{
+    cout<<nume<<'/'<<deno<<'\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int deno, nume;//분모, 분자 변수 설정
+    deno = 1;
+    nume = 1;
+    
+    int x;
+    cin >> x;
+    
+    if(x == 1) // 첫번째인 경우
+    {
+        Print(deno, nume);
+    }
+    else// 순서를 찾아야하는 경우
+    {
+        deno++; //분모 2로 설정
+        int line = 2; //줄 횟수
+        int minus =2;
+        while(1)
+        {
+            if(x - (minus+1) >0) //더아래로 내려갈수 있는 경우
+            {
+                x -= minus++;
+                line++;
+            }
+            else //줄이 해당 줄인 경우
+            {
+                break;
+            }
+            
+        }
+        //cout << line ;
+        if(line % 2 == 0) //짝수행일때
+        {
+            deno =line - (x-2);
+            nume =(line+1) - deno;
+            Print(deno, nume);
+        }
+        else//홀수행일때
+        {
+            nume =line - (x-2);
+            deno = (line+1) - nume;
+            Print(deno, nume);
+        }
+        
+    }
+    return 0;
+}
+

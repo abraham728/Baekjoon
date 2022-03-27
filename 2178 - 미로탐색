@@ -1,0 +1,60 @@
+
+#include <string>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <iostream>
+#include <queue>
+#include <utility>
+
+using namespace std;
+
+int N,M; //초기변수값 N*M
+string mp[100]; //주어진 미로를 저장할 map
+int dis[100][100]; //최소거리를 저장할 변수, <0,0>에서 <0,1>을 가면 <0,1>에는 1이 저장된다.
+int dx[4] = {0,1,0,-1};//인접한 곳만 갈 수 있도록 하는 변수
+int dy[4] = {1,0,-1,0};
+queue<pair<int, int>> quePair;
+
+void BFS(int x, int y)
+{
+    quePair.push(make_pair(x,y));
+    
+    int tmpX, tmpY;
+    while(!quePair.empty())
+    {
+        tmpX=quePair.front().first;
+        tmpY=quePair.front().second;
+        quePair.pop();
+        
+        for(int i=0; i<4; i++)
+        {
+            int nx = tmpX + dx[i];
+            int ny = tmpY + dy[i];
+            if( (nx >= 0) && (nx < N) && (ny >= 0) && (ny < M) && (mp[nx][ny] == '1') && (dis[nx][ny] == 0) ) //map은 string이니까 소괄호 해주고, dis는 int니까 필요없다.
+            {
+                quePair.push(make_pair(nx,ny));
+                dis[nx][ny]=dis[tmpX][tmpY]+1;
+            }
+            
+        }
+        
+    }
+    
+}
+
+int main()
+{
+    
+    cin >> N >> M;
+    for(int i=0; i<N; i++)
+    {
+        cin >>mp[i];
+    }
+    BFS(0,0);
+    
+    cout <<dis[N-1][M-1]+1;
+    return 0;
+}

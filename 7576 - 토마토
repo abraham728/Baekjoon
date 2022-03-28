@@ -1,0 +1,84 @@
+#include <string>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <iostream>
+#include <queue>
+#include <utility>
+
+using namespace std;
+
+int N, M; //초기변수값 N*M
+int tomato[1000][1000];
+int days[1000][1000]; // 바뀐 날자를 저장. 
+int dx[4] = { 0,1,0,-1 };//인접한 곳만 갈 수 있도록 하는 변수
+int dy[4] = { 1,0,-1,0 };
+queue<pair<int, int>> quePair;
+
+void BFS()
+{
+    int tmpX, tmpY;
+    while (!quePair.empty())
+    {
+        tmpX = quePair.front().first;
+        tmpY = quePair.front().second;
+        quePair.pop();
+
+        for (int i = 0; i < 4; i++)
+        {
+            int nx = tmpX + dx[i];
+            int ny = tmpY + dy[i];
+            if ((nx >= 0) && (nx < N) && (ny >= 0) && (ny < M) && (tomato[nx][ny]==0) && (days[nx][ny] == -1)) //map은 string이니까 소괄호 해주고, dis는 int니까 필요없다.
+            {
+                quePair.push(make_pair(nx, ny));
+                days[nx][ny] = days[tmpX][tmpY] + 1;
+            }
+        }
+    }
+
+}
+
+int main()
+{
+
+    cin >> M >> N;
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            cin >> tomato[i][j];
+            days[i][j] = -1;
+
+            if (tomato[i][j] == 1) // quePair에 넣을 애들
+            {
+                quePair.push(make_pair(i, j));
+                days[i][j] ++;
+            }
+        }
+    }
+    BFS();
+    bool flag = false;
+    int minDay = -1;
+
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            minDay = max(minDay, days[i][j]);
+            if ((days[i][j] == -1) && tomato[i][j] == 0)
+            {
+                minDay = -1; flag = true;
+                break;
+            }
+        }
+        if (flag)break;
+    }
+
+
+    cout << minDay;
+   
+    return 0;
+}
+

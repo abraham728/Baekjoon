@@ -1,0 +1,91 @@
+#include <string>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <iostream>
+#include <queue>
+#include <utility>
+
+using namespace std;
+
+pair<int, int> cur, target;
+int arr     [301][301];
+int visited[301][301];
+int dx[8] = { -2,-1,1,2,2,1,-1,-2 };
+int dy[8] = { 1,2,2,1,-1,-2,-2,-1 };
+queue<pair<int, int>> Q;
+int M, D;
+
+void reset()
+{
+	while (!Q.empty()) Q.pop();
+	for (int i = 0; i < 301; i++)
+	{
+		for (int j = 0; j < 301; j++)
+		{
+			visited[i][j] = 0;
+			arr[i][j] = 0;
+		}
+	}
+}
+void BFS(int x, int y)
+{
+	Q.push(make_pair(x,y));
+	visited[x][y] = true; 
+	while (!Q.empty())
+	{
+		int QX = Q.front().first;
+		int QY = Q.front().second;
+
+		Q.pop();
+
+		if ((QX == target.first) && (QY == target.second))
+		{
+			cout << arr[QX][QY] << '\n';
+			while (!Q.empty())Q.pop();
+			break;
+		}
+
+		for (int i = 0; i < 8; i++)
+		{
+			int nx = QX + dx[i];
+			int ny = QY + dy[i];
+
+			if ((nx >= 0) && (ny >= 0) && (nx < D) && (ny < D) && !visited[nx][ny])
+			{
+				Q.push(make_pair(nx, ny));
+				visited[nx][ny] = true; 
+				arr[nx][ny] = arr[QX][QY] + 1;
+
+			}
+
+		}
+	}
+
+
+}
+
+int main()
+{ 
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0); 
+	
+	 
+	cin >> M; 
+	for (int i = 0; i < M; i++)
+	{
+		cin >> D;
+		cin >> cur.first >> cur.second;
+		cin >> target.first >> target.second;
+
+		BFS(cur.first, cur.second);
+		reset();
+	}
+
+
+	return 0;
+}
+

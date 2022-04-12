@@ -1,0 +1,37 @@
+#include <string>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <iostream>
+#include <queue>
+#include <utility>
+
+using namespace std;
+
+int main()
+{ 
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0); 
+
+	int H, M, plusM;
+	cin >> H >> M; //시간 분 입력 
+	cin >> plusM;
+
+	M += plusM % 60;
+	if (M >= 60) //분침이 한바퀴 돌 경우 
+	{
+		H++;
+		if (H == 24)H = 0;
+		M -= 60;
+	}
+	H += plusM / 60;
+	if (H >= 24) H = H%24;
+	cout << H << " " << M;
+
+
+	
+	return 0;
+}

@@ -1,0 +1,36 @@
+#include <string>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <iostream>
+#include <queue>
+#include <utility>
+
+using namespace std;
+
+
+long fibo[50];
+int N;
+
+int main()
+{ 
+	ios_base::sync_with_stdio(false);
+	cin.tie(0);
+	cout.tie(0); 
+	cin >> N;
+
+	fibo[0] = 0;
+	fibo[1] = 1;
+
+	for (int i = 2; i <= N; i++)
+	{
+		fibo[i] = fibo[i-1] + fibo[i-2];
+	}
+	
+	cout << fibo[N];
+
+	return 0;
+}
+

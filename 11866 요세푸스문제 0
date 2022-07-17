@@ -1,0 +1,63 @@
+#include <string>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <iostream>
+#include <queue>
+#include <utility>
+#include <stdio.h>
+
+using namespace std;
+
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    
+    int N,K;
+    cin >> N >> K;
+    
+    queue<int> jose; //요세푸스 큐
+    
+    //큐에 원소 삽입
+    for(int i=1; i<= N; i++)
+    {
+        jose.push(i);
+    }
+    
+    //프린트문 시작
+    cout << "<";
+    
+    while(1)
+    {
+        //k번째 원소가 jose큐 가장 앞에 오도록함
+        //나갈원소 앞에 있던 원소들은 jose큐 뒤에 삽입
+        for(int i=0; i<K-1; i++)
+        {
+            int tmp = jose.front();
+            jose.push(tmp);
+            jose.pop();
+        }
+        
+        cout << jose.front();
+        jose.pop();
+        //jose 큐가 꽉 찼을 경우, while문 탈출
+        if(jose.empty())
+        {
+            break;
+        }
+        //jose 큐가 비어있지 않을경우, ','을 찍어줌
+        else
+        {
+            cout <<", ";
+        }
+    }
+    //프린트문 종료
+    cout<<">";
+}
+

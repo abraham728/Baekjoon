@@ -1,0 +1,60 @@
+
+#include <string>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <unordered_map>
+#include <unordered_set>
+#include <iostream>
+#include <queue>
+#include <utility>
+#include <stdio.h>
+#include <map>
+using namespace std;
+
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    //KEY 단어 , VALUE 나온횟수
+    map<string,int> bestS;
+    int N;
+    cin >> N;
+    
+    while(N>0)
+    {
+        //MAP에 객체 삽입
+        string tmp;
+        cin >> tmp;
+        bestS[tmp]++;
+        
+        N--;
+    }
+    
+    int maxV=0;
+    //최대 많이 나온 횟수 추출
+    for(auto iter : bestS)
+    {
+        maxV = max(maxV, iter.second);
+    }
+    
+    //답안추출위한 vector선언
+    vector<string> answer;
+    //최대 많이 나온 단어 추출하여 vector에 삽입
+    for(auto iter : bestS)
+    {
+        if(iter.second == maxV)
+        {
+            answer.push_back(iter.first);
+        }
+    }
+    
+    //vector정렬(사전순)
+    sort(answer.begin(),answer.end());
+    
+    cout << answer[0];
+}
+
